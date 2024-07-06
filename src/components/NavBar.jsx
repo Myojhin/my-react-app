@@ -2,20 +2,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const NavBar = ({ handlePrevious, handleNext, canGoPrevious, canGoNext }) => {
+const NavBar = ({ pokemonList, setPokemonIndex }) => {
   return (
     <div>
-      <button onClick={handlePrevious} disabled={!canGoPrevious}>Précédent</button>
-      <button onClick={handleNext} disabled={!canGoNext}>Suivant</button>
+      {pokemonList.map((pokemon, index) => (
+        <button
+          key={pokemon.name}
+          onClick={() => setPokemonIndex(index)}
+        >
+          {pokemon.name}
+        </button>
+      ))}
     </div>
   );
 };
 
 NavBar.propTypes = {
-  handlePrevious: PropTypes.func.isRequired,
-  handleNext: PropTypes.func.isRequired,
-  canGoPrevious: PropTypes.bool.isRequired,
-  canGoNext: PropTypes.bool.isRequired,
+  pokemonList: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      imgSrc: PropTypes.string,
+    }).isRequired
+  ).isRequired,
+  setPokemonIndex: PropTypes.func.isRequired,
 };
 
 export default NavBar;

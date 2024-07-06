@@ -3,7 +3,7 @@ import React from "react";
 
 const PokemonCard = ({ pokemon }) => {
   return (
-    <figure>
+    <figure className="card">
       {pokemon.imgSrc ? (
         <img className="pokemon-image" src={pokemon.imgSrc} alt={pokemon.name} />
       ) : (

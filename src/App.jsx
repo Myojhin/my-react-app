@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import NavBar from './components/NavBar';
-import PokemonCard from './components/PokemonCard';
+import PokemonCard from './components/pokemonCard';
 
 const pokemonList = [
   { name: "Bulbasaur", imgSrc: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png" },
@@ -15,26 +15,12 @@ const pokemonList = [
 const App = () => {
   const [pokemonIndex, setPokemonIndex] = useState(0);
 
-  const handlePrevious = () => {
-    if (pokemonIndex > 0) {
-      setPokemonIndex(pokemonIndex - 1);
-    }
-  };
-
-  const handleNext = () => {
-    if (pokemonIndex < pokemonList.length - 1) {
-      setPokemonIndex(pokemonIndex + 1);
-    }
-  };
-
   return (
     <div>
       <PokemonCard pokemon={pokemonList[pokemonIndex]} />
       <NavBar
-        handlePrevious={handlePrevious}
-        handleNext={handleNext}
-        canGoPrevious={pokemonIndex > 0}
-        canGoNext={pokemonIndex < pokemonList.length - 1}
+        pokemonList={pokemonList}
+        setPokemonIndex={setPokemonIndex}
       />
     </div>
   );
