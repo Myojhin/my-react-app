@@ -1,8 +1,13 @@
-// src/components/NavBar.jsx
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-const NavBar = ({ pokemonList, setPokemonIndex }) => {
+const NavBar = ({ pokemonList, setPokemonIndex, currentPokemon }) => {
+  useEffect(() => {
+    if (currentPokemon === "Pikachu") {
+      alert("pika pikachu !!!");
+    }
+  }, [currentPokemon]);
+
   return (
     <div>
       {pokemonList.map((pokemon, index) => (
@@ -25,6 +30,8 @@ NavBar.propTypes = {
     }).isRequired
   ).isRequired,
   setPokemonIndex: PropTypes.func.isRequired,
+  currentPokemon: PropTypes.string.isRequired,
 };
 
 export default NavBar;
+
